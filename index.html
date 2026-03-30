@@ -1,633 +1,230 @@
 <!DOCTYPE html>
-<!-- saved from url=(0080)https://designergpt.replit.app/pages/82fe3fdd98fb1d4b36508c960910a1da.html#start -->
-<html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pusch Heizung – Fragebogen Beratungsgespräch</title>
-  <link rel="stylesheet" href="./index_files/pico.min.css">
-  <style>
-    :root {
-      --brand: #c51f17;
-      --brand-dark: #94150f;
-      --brand-soft: #fff1ef;
-      --ink: #223246;
-      --muted: #647688;
-      --line: #dfe6ed;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: radial-gradient(circle at top right, rgba(197,31,23,.10), transparent 28%), linear-gradient(180deg, #fff 0%, #faf7f6 100%);
-      color: var(--ink);
-    }
-    nav {
-      border-bottom: 1px solid rgba(0,0,0,.06);
-      backdrop-filter: blur(12px);
-      background: rgba(255,255,255,.95);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .brandlock {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-      text-decoration: none;
-      color: var(--ink);
-      font-weight: 700;
-    }
-    .brandlock img, .step-brand img, .hero-logo img {
-      display: block;
-      object-fit: contain;
-      background: white;
-    }
-    .brandlock img { width: 78px; height: 62px; }
-    .brand-meta small { display:block; color: var(--muted); font-weight:600; }
-    nav a[role="button"], .btn-brand {
-      background: var(--brand);
-      border-color: var(--brand);
-      border-radius: 999px;
-    }
-    nav a[role="button"]:hover, .btn-brand:hover {
-      background: var(--brand-dark);
-      border-color: var(--brand-dark);
-    }
-    main.container { padding-top: 2.5rem; padding-bottom: 2rem; }
-    .hero {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 2rem;
-      align-items: center;
-      min-height: 52vh;
-    }
-    .eyebrow {
-      display: inline-block;
-      background: var(--brand-soft);
-      color: var(--brand-dark);
-      border: 1px solid rgba(197,31,23,.16);
-      padding: .35rem .7rem;
-      border-radius: 999px;
-      font-size: .85rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-    .content-card, .step-panel, .summary-box, .thankyou-box, .logo-panel {
-      background: rgba(255,255,255,.97);
-      border: 1px solid rgba(34,50,70,.08);
-      border-radius: 24px;
-      box-shadow: 0 16px 50px rgba(25,33,45,.07);
-    }
-    .hero-copy p.lead { font-size: 1.08rem; color: var(--muted); max-width: 62ch; }
-    .hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.25rem; }
-    .logo-panel {
-      min-height: 360px;
-      padding: 2rem;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at top right, rgba(197,31,23,.10), transparent 30%), linear-gradient(135deg, #fff, #fff7f5);
-    }
-    .hero-logo { text-align: center; }
-    .hero-logo img { width: min(100%, 340px); margin: 0 auto 1rem; }
-    .hero-logo p { color: var(--muted); margin-bottom: 0; }
-    .trust-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 2rem 0 2rem;
-    }
-    .trust-item {
-      background: #fff;
-      border: 1px solid rgba(34,50,70,.08);
-      border-radius: 18px;
-      padding: 1rem 1.1rem;
-      box-shadow: 0 8px 24px rgba(25,33,45,.05);
-    }
-    .step-shell { padding: 1rem; }
-    .progress-wrap { margin-bottom: 1.2rem; }
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: .95rem;
-      color: var(--muted);
-      margin-bottom: .45rem;
-    }
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      background: #edf1f5;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand), #ef6c52);
-      border-radius: 999px;
-      transition: width .3s ease;
-    }
-    .step-panel { padding: 1.4rem; display: none; min-height: 420px; }
-    .step-panel.active { display: block; }
-    .step-header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
-      margin-bottom: .75rem;
-    }
-    .step-brand {
-      display:flex;
-      align-items:center;
-      gap:.7rem;
-      color: var(--muted);
-      font-weight:700;
-      white-space: nowrap;
-    }
-    .step-brand img { width: 58px; height: 46px; }
-    .step-panel p.step-hint { color: var(--muted); margin-bottom: 1.2rem; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .option-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .option-card {
-      position: relative;
-      border: 1.5px solid var(--line);
-      border-radius: 20px;
-      background: #fff;
-      padding: 1rem;
-      min-height: 150px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: .75rem;
-      text-align: center;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-    .option-card:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(25,33,45,.08); }
-    .option-card input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-    .option-card .icon {
-      width: 58px; height: 58px; border-radius: 50%; background: #f6f1f0; display: grid; place-items: center; color: var(--brand); font-size: 1.5rem; font-weight: 700;
-    }
-    .option-card.active {
-      border-color: var(--brand);
-      background: var(--brand-soft);
-      box-shadow: inset 0 0 0 1px rgba(197,31,23,.18);
-    }
-    .check-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: .75rem;
-      margin-bottom: 1rem;
-    }
-    .check-pill {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: .8rem .95rem;
-      background: #fff;
-      display: flex;
-      gap: .7rem;
-      align-items: center;
-    }
-    .upload-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.2rem;
-      margin-top: .75rem;
-    }
-    .upload-card {
-      border: 1px dashed #d6c0bb;
-      background: #fffaf8;
-      border-radius: 18px;
-      padding: 1.2rem;
-      min-height: 140px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:.8rem;
-    }
-    .upload-title { font-weight: 600; }
-    .upload-trigger {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:.75rem 1rem;
-      border-radius: 999px;
-      background: var(--brand-soft);
-      color: var(--brand-dark);
-      border:1px solid rgba(197,31,23,.18);
-      cursor:pointer;
-      font-weight:600;
-      width: fit-content;
-    }
-    .upload-trigger input[type="file"] { display:none; }
-    .upload-name {
-      font-size:.92rem;
-      color: var(--muted);
-      word-break: break-word;
-      min-height: 1.4rem;
-    }
-    .summary-box, .thankyou-box { padding: 1.4rem; }
-    .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .summary-item { padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
-    .summary-item strong { display: block; margin-bottom: .25rem; color: var(--muted); font-size: .88rem; }
-    .nav-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; }
-    .fineprint { color: var(--muted); font-size: .92rem; }
-    .hidden { display: none !important; }
-    .thankyou-box { text-align: center; }
-    input, select, textarea, button { min-height: 52px; font-size: 16px; }
-    textarea { min-height: 140px; }
-    label { font-size: .98rem; }
-    iframe.hidden-frame { width:0; height:0; border:0; position:absolute; visibility:hidden; }
-    footer.container { padding-bottom: 3rem; color: var(--muted); }
-    @media (max-width: 900px) {
-      .hero, .summary-grid, .grid-2, .trust-row { grid-template-columns: 1fr; }
-      .nav-buttons { flex-direction: column-reverse; }
-      nav ul:last-child { display: none; }
-      .step-header { flex-direction: column; align-items:flex-start; }
-      .logo-panel { min-height: auto; padding: 1.5rem; }
-      .hero-logo img { width: min(100%, 280px); }
-      .step-panel { padding: 1.05rem; min-height: auto; }
-      .step-shell { padding: .7rem; }
-      .option-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
-      .option-card { min-height: 124px; padding: .8rem; }
-      .option-card .icon { width: 50px; height: 50px; font-size: 1.2rem; }
-      .check-list, .upload-grid { grid-template-columns: 1fr; }
-      .brandlock img { width: 64px; height: 50px; }
-      .brand-meta { font-size: .95rem; line-height: 1.25; }
-      .progress-meta { font-size: .88rem; }
-      main.container { padding-top: 1.2rem; }
-    }
-    @media (max-width: 520px) {
-      .hero-actions { flex-direction: column; }
-      .hero-actions a, .nav-buttons button { width: 100%; }
-      .option-grid { grid-template-columns: 1fr 1fr; }
-      .summary-grid { grid-template-columns: 1fr; }
-      .trust-row { margin: 1.3rem 0 2rem; }
-      .step-brand { width: 100%; justify-content: flex-start; }
-    }
-  </style>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Pusch Heizung – Fragebogen Beratungsgespräch</title>
+
+<!-- ✅ FIX: CDN statt kaputter lokaler Datei -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+:root {
+  --brand: #c51f17;
+  --brand-dark: #94150f;
+  --brand-soft: #fff1ef;
+  --ink: #223246;
+  --muted: #647688;
+  --line: #dfe6ed;
+}
+
+body {
+  background: radial-gradient(circle at top right, rgba(197,31,23,.10), transparent 28%),
+              linear-gradient(180deg, #fff 0%, #faf7f6 100%);
+  color: var(--ink);
+}
+
+/* NAV */
+nav {
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,255,255,.95);
+}
+
+.brandlock {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brandlock img {
+  height: 50px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.eyebrow {
+  background: var(--brand-soft);
+  padding: .4rem .8rem;
+  border-radius: 999px;
+  font-size: .85rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+/* CARDS */
+.content-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.05);
+}
+
+/* STEPS */
+.step-panel {
+  display: none;
+}
+
+.step-panel.active {
+  display: block;
+}
+
+/* BUTTONS */
+.btn-brand {
+  background: var(--brand);
+  border: none;
+  border-radius: 999px;
+}
+
+.btn-brand:hover {
+  background: var(--brand-dark);
+}
+
+/* PROGRESS */
+.progress-bar {
+  height: 10px;
+  background: #eee;
+  border-radius: 999px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--brand);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
+
 <body>
-  <nav class="container-fluid">
-    <ul>
-      <li>
-        <a href="https://designergpt.replit.app/pages/82fe3fdd98fb1d4b36508c960910a1da.html#start" class="brandlock">
-          <img src="logo.jpg" alt="Pusch Logo" style="height:50px;">F
-          <span class="brand-meta">Fragebogen zur Vorbereitung für das Beratungsgespräch<small>Pusch Wasser · Wärme · Solar</small></span>
-        </a>
-      </li>
-    </ul>
-    <ul><li><a href="https://designergpt.replit.app/pages/82fe3fdd98fb1d4b36508c960910a1da.html#start">Start</a></li><li><a href="https://designergpt.replit.app/pages/82fe3fdd98fb1d4b36508c960910a1da.html#fragebogen">Fragebogen</a></li><li><a href="https://designergpt.replit.app/pages/82fe3fdd98fb1d4b36508c960910a1da.html#fragebogen" role="button">Jetzt starten</a></li></ul>
-  </nav>
 
-  <main class="container" id="start">
-    <div class="grid hero">
-  <section style="max-width: 800px; margin: auto; text-align: center;">
-    
-    <span class="eyebrow">Digitale Vorbereitung für Ihren Beratungstermin</span>
-
-    <hgroup>
-      <h2>Fragebogen für Ihr Beratungsgespräch</h2>
-      <h3>Schritt für Schritt zu vollständigen Objekt- und Heizungsdaten</h3>
-    </hgroup>
-
-    <p style="max-width: 650px; margin: 1rem auto; color: #647688;">
-      Je genauer Sie den Fragebogen ausfüllen, desto gezielter können wir im Beratungstermin 
-      auf Ihre Wünsche, Ihre Immobilie und die technischen Gegebenheiten eingehen.
-    </p>
-
-    <div style="margin-top: 1.5rem;">
-      <a href="#fragebogen" role="button" class="btn-brand">
-        Fragebogen beginnen
+<nav class="container-fluid">
+  <ul>
+    <li>
+      <a class="brandlock">
+        <img src="logo.jpg">
+        <span>
+          Fragebogen Beratungsgespräch<br>
+          <small>Pusch Wasser · Wärme · Solar</small>
+        </span>
       </a>
-    </div>
+    </li>
+  </ul>
+  <ul>
+    <li><a href="#">Start</a></li>
+    <li><a href="#fragebogen">Fragebogen</a></li>
+    <li><a href="#fragebogen" role="button">Jetzt starten</a></li>
+  </ul>
+</nav>
 
-  </section>
+<main class="container">
+
+<section class="hero">
+  <span class="eyebrow">Digitale Vorbereitung</span>
+  <h2>Fragebogen für Ihr Beratungsgespräch</h2>
+  <p>Bitte vollständig ausfüllen – so können wir optimal vorbereiten.</p>
+
+  <a href="#fragebogen" role="button" class="btn-brand">Start</a>
+</section>
+
+<section id="fragebogen" class="content-card">
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progress" style="width:10%"></div>
 </div>
-    <div class="trust-row" id="ablauf">
-      <div class="trust-item"><strong>1. Angaben machen</strong><br>Sie wählen sich Schritt für Schritt durch Kontaktdaten, Gebäude, Heizung und Verbrauch.</div>
-      <div class="trust-item"><strong>2. Förder-Check nutzen</strong><br>Zusätzlich fragen wir die wichtigsten Punkte für eine erste Förder-Einschätzung ab.</div>
-      <div class="trust-item"><strong>3. Unterlagen senden</strong><br>Am Ende werden Ihre Angaben an <strong>b.kehrly@pusch-heizung.de</strong> übermittelt.</div>
-    </div>
 
-    <section id="fragebogen" class="content-card">
-      <div class="step-shell">
-        <div class="progress-wrap">
-          <div class="progress-meta">
-            <span id="stepLabel">Schritt 1 von 8</span>
-            <span id="stepTitle">Kontaktdaten</span>
-          </div>
-          <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 12.5%;"></div></div>
-        </div>
+<form action="https://formsubmit.co/b.kehrly@pusch-heizung.de" method="POST">
 
-        <iframe name="hidden_iframe" class="hidden-frame" src="./index_files/saved_resource.html"></iframe>
+<input type="hidden" name="_subject" value="Fragebogen Beratung">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
 
-        <form id="heatpumpForm" action="https://formsubmit.co/b.kehrly@pusch-heizung.de" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="_subject" value="Ausgefüllter Fragebogen Beratungsgespräch">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="thankyou.html">
+<!-- STEP 1 -->
+<div class="step-panel active">
+<h3>Kontaktdaten</h3>
 
-          <section class="step-panel active" data-step-title="Kontaktdaten" data-step-id="contact">
-            <div class="step-header"><div><h3>Ihre Kontaktdaten</h3><p class="step-hint">Bitte tragen Sie die Daten ein, unter denen wir Sie für Rückfragen und den Beratungstermin erreichen können.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <div class="grid-2">
-              <label>Vor- &amp; Nachname*<input type="text" name="Vor- und Nachname" required=""></label>
-              <label>Objektadresse<input type="text" name="Objektadresse"></label>
-              <label>Rechnungsanschrift, falls abweichend<input type="text" name="Rechnungsanschrift"></label>
-              <label>Straße &amp; Nr.*<input type="text" name="Straße und Hausnummer" required=""></label>
-              <label>PLZ &amp; Ort*<input type="text" name="PLZ und Ort" required=""></label>
-              <label>Telefon / Mobil*<input type="tel" name="Telefon" required=""></label>
-              <label>E-Mail*<input type="email" name="E-Mail" required=""></label>
-            </div>
-            <div class="nav-buttons"><span></span><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<input type="text" name="Name" placeholder="Name" required>
+<input type="email" name="Email" placeholder="E-Mail" required>
+<input type="text" name="Telefon" placeholder="Telefon">
 
-          <section class="step-panel" data-step-title="Gebäudedaten" data-step-id="building">
-            <div class="step-header"><div><h3>Gebäudedaten</h3><p class="step-hint">Die Objektangaben sind wichtig, um Größe, Zustand und Umbaupotenzial richtig einschätzen zu können.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <label>Art des Hauses*</label>
-            <div class="option-grid">
-              <label class="option-card"><input type="radio" name="Art des Hauses" value="Einfamilienhaus" required=""><span class="icon">🏠</span><strong>Einfamilienhaus</strong></label>
-              <label class="option-card"><input type="radio" name="Art des Hauses" value="Zweifamilienhaus"><span class="icon">🏘️</span><strong>Zweifamilienhaus</strong></label>
-              <label class="option-card"><input type="radio" name="Art des Hauses" value="Mehrfamilienhaus"><span class="icon">🏢</span><strong>Mehrfamilienhaus</strong></label>
-            </div>
-            <div class="grid-2">
-              <label>Baujahr des Gebäudes*<input type="number" name="Baujahr des Gebäudes" value="1990" min="1900" max="2026" step="1" required=""></label>
-              <label>Zu beheizende Fläche in m²*<input type="number" name="Zu beheizende Fläche" required=""></label>
-              <label>Maße Heizraum (HxBxL in m)<input type="text" name="Maße Heizraum" placeholder="z. B. 2,2 x 3,0 x 4,5"></label>
-              <label>Schmalste Tür bis zum Heizraum in cm<input type="number" name="Schmalste Tür Heizraum" placeholder="cm"></label>
-            </div>
-            <div class="grid-2">
-              <label>Gebäude saniert?
-                <select name="Gebäude saniert">
-                  <option value="">Bitte wählen</option>
-                  <option>Unsaniert</option>
-                  <option>Saniert vor 1995</option>
-                  <option>Saniert nach 1996</option>
-                  <option>Saniert nach 2000</option>
-                  <option>Saniert nach 2015</option>
-                </select>
-              </label>
-              <label>Ausbau geplant?
-                <select name="Ausbau geplant"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select>
-              </label>
-            </div>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<button type="button" onclick="next()">Weiter</button>
+</div>
 
-          <section class="step-panel" data-step-title="Heizsystem aktuell" data-step-id="current-heating">
-            <div class="step-header"><div><h3>Aktuelle Heizungsanlage</h3><p class="step-hint">Wählen Sie die aktuelle Heizenergie und Ihre vorhandenen Wärmeverteiler aus.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <label>Womit heizen Sie aktuell?*</label>
-            <div class="option-grid">
-              <label class="option-card"><input type="radio" name="Aktuelle Heizenergie" value="Gas" required=""><span class="icon">🔥</span><strong>Gas</strong></label>
-              <label class="option-card"><input type="radio" name="Aktuelle Heizenergie" value="Heizöl"><span class="icon">💧</span><strong>Heizöl</strong></label>
-              <label class="option-card"><input type="radio" name="Aktuelle Heizenergie" value="Fernwärme"><span class="icon">♨️</span><strong>Fernwärme</strong></label>
-              <label class="option-card"><input type="radio" name="Aktuelle Heizenergie" value="Nachtspeicher"><span class="icon">🌙</span><strong>Nachtspeicher</strong></label>
-              <label class="option-card"><input type="radio" name="Aktuelle Heizenergie" value="Sonstiges"><span class="icon">•••</span><strong>Sonstiges</strong></label>
-            </div>
-            <div class="grid-2">
-              <label>Heizart<select name="Heizart"><option value="">Bitte wählen</option><option>Fußbodenheizung</option><option>Heizkörper</option><option>Fußbodenheizung und Heizkörper</option></select></label>
-              <label>Anzahl Heizkörper<input type="number" name="Anzahl Heizkörper"></label>
-              <label>Baujahr aktuelle Heizung<input type="number" name="Baujahr aktuelle Heizung" value="1995" min="1900" max="2026" step="1"></label>
-              <label>Aktueller Anlagenstandort<select name="Anlagenstandort"><option value="">Bitte wählen</option><option>Keller</option><option>Erdgeschoss</option><option>Obergeschoss</option><option>Spitzboden</option></select></label>
-              <label>Soll die neue Heizung am Standort der alten sein?<select name="Neuer Anlagenstandort"><option value="">Bitte wählen</option><option>gleicher Standort</option><option>anderer Standort</option></select></label>
-              <label>Ist der Zählerschrank im gleichen Raum wie die Heizung?<select name="Zählerschrank gleicher Raum"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-              <label>Ist PV vorhanden?<select name="PV vorhanden"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option><option>In Planung</option></select></label>
-              <label>Bisherige Vorlauftemperatur im Heizsystem in °C<input type="number" name="Vorlauftemperatur Heizsystem" placeholder="°C"></label>
-              <label>Gab es bisher Räume, die nicht richtig warm wurden?<select name="Räume nicht richtig warm"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-              <label>Warmwasser über Heizung?<select name="Warmwasser über Heizung"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-            </div>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<!-- STEP 2 -->
+<div class="step-panel">
+<h3>Gebäude</h3>
 
-          <section class="step-panel" data-step-title="Verbrauch, Tarif &amp; Haushalt" data-step-id="consumption">
-            <div class="step-header"><div><h3>Verbrauch, Tarif &amp; Haushalt</h3><p class="step-hint">Diese Angaben helfen uns, den Bedarf besser einzuordnen.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <div class="grid-2">
-              <label>Aktueller Tarif Strom (€/kWh)<input type="text" name="Tarif Strom"></label>
-              <label>Jährlicher Stromverbrauch (kWh)<input type="text" name="Verbrauch Strom"></label>
-            </div>
-            <div class="grid-2 fuel-row hidden" data-fuel-row="Gas">
-              <label>Aktueller Tarif Gas (€/kWh)<input type="text" name="Tarif Gas"></label>
-              <label>Jährlicher Gasverbrauch (kWh)<input type="text" name="Verbrauch Gas"></label>
-            </div>
-            <div class="grid-2 fuel-row hidden" data-fuel-row="Heizöl">
-              <label>Aktueller Tarif Öl (€/Ltr.)<input type="text" name="Tarif Öl"></label>
-              <label>Jährlicher Ölverbrauch (Ltr.)<input type="text" name="Verbrauch Öl"></label>
-            </div>
-            <div class="grid-2 fuel-row hidden" data-fuel-row="Fernwärme">
-              <label>Aktueller Tarif Fernwärme (€/kWh)<input type="text" name="Tarif Fernwärme"></label>
-              <label>Jährlicher Fernwärmeverbrauch (kWh)<input type="text" name="Verbrauch Fernwärme"></label>
-            </div>
-            <div class="grid-2"><label>Anzahl Personen im Haushalt<input type="number" name="Anzahl Personen im Haushalt"></label></div>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<input type="number" name="Baujahr" value="1990">
+<input type="number" name="Wohnfläche" placeholder="m²">
 
-          <section class="step-panel" data-step-title="Förder-Check" data-step-id="funding">
-            <div class="step-header"><div><h3>Förder-Check</h3><p class="step-hint">Mit diesen Angaben können wir im Beratungstermin schneller prüfen, welche Fördermöglichkeiten grundsätzlich in Frage kommen.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <div class="grid-2">
-              <label>Sind Sie Eigentümer der Immobilie?<select name="Fördercheck Eigentümer"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-              <label>Wird das Gebäude selbst bewohnt?<select name="Fördercheck selbst bewohnt"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option><option>Teilweise</option></select></label>
-              <label>Handelt es sich um ein Wohngebäude?<select name="Fördercheck Wohngebäude"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-              <label>Soll die aktuelle Heizung ersetzt werden?<select name="Aktuelle Heizung ersetzen"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-              <label>Gibt es mehr als eine Wohneinheit?<select name="Mehr als eine Wohneinheit"><option value="">Bitte wählen</option><option>Nein</option><option>Mit einer Einliegerwohnung (2 Wohneinheiten)</option><option>Mehr als 2 Wohneinheiten</option></select></label>
-            </div>
-            <label>Weitere Hinweise zum Förder-Check<textarea name="Fördercheck Hinweise" rows="4" placeholder="z. B. Einliegerwohnung, Vermietung, Sanierungsplan, Denkmal, WEG"></textarea></label>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<button type="button" onclick="prev()">Zurück</button>
+<button type="button" onclick="next()">Weiter</button>
+</div>
 
-          <section class="step-panel" data-step-title="Wünsche zur neuen Heizung" data-step-id="future-heating">
-            <div class="step-header"><div><h3>Wünsche zur neuen Heizung</h3><p class="step-hint">Hier erfassen wir, welche Lösung gewünscht wird und welche Zusatzinformationen für den Beratungstermin relevant sind.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <label>Womit möchten Sie in Zukunft heizen?*</label>
-            <div class="option-grid" id="futureHeatingGrid">
-              <label class="option-card active"><input type="checkbox" name="Gewünschte Heizenergie" value="Wärmepumpe" checked=""><span class="icon">🏡</span><strong>Wärmepumpe</strong></label>
-              <label class="option-card"><input type="checkbox" name="Gewünschte Heizenergie" value="Erdgas"><span class="icon">🔥</span><strong>Erdgas</strong></label>
-              <label class="option-card"><input type="checkbox" name="Gewünschte Heizenergie" value="Heizöl"><span class="icon">💧</span><strong>Heizöl</strong></label>
-              <label class="option-card"><input type="checkbox" name="Gewünschte Heizenergie" value="Pellets"><span class="icon">🌿</span><strong>Pellets</strong></label>
-              <label class="option-card"><input type="checkbox" name="Gewünschte Heizenergie" value="Holz"><span class="icon">🪵</span><strong>Holz</strong></label>
-              <label class="option-card"><input type="checkbox" name="Gewünschte Heizenergie" value="Flüssiggas"><span class="icon">⛽</span><strong>Flüssiggas</strong></label>
-            </div>
-            <label>Andere Wärmequellen vorhanden?</label>
-            <div class="check-list">
-              <label class="check-pill"><input type="checkbox" name="Andere Wärmequellen" value="Kamin"> Kamin</label>
-              <label class="check-pill"><input type="checkbox" name="Andere Wärmequellen" value="Solar"> Solar</label>
-              <label class="check-pill"><input type="checkbox" name="Andere Wärmequellen" value="Sonstiges"> Sonstiges</label>
-            </div>
-            <div class="grid-2"><label>Gewünschter Montagetermin<input type="text" name="Gewünschter Montagetermin"></label></div>
-            <label>Wünsche zur neuen Heizung / Was ist Ihnen besonders wichtig?<textarea name="Wünsche zur neuen Heizung" rows="5"></textarea></label>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<!-- STEP 3 -->
+<div class="step-panel">
+<h3>Heizung</h3>
 
-          <section class="step-panel hidden" data-step-title="Zusätzliche Abgasdaten" data-step-id="chimney-step" id="chimneyStep">
-            <div class="step-header"><div><h3>Zusätzliche Abfrage zur Abgasführung</h3><p class="step-hint">Da Sie eine Lösung mit Öl, Gas, Flüssiggas, Holz oder Pellets gewählt haben, benötigen wir dazu noch einige Zusatzangaben.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <div class="grid-2">
-              <label>Schornsteinhöhe<input type="text" name="Schornsteinhöhe"></label>
-              <label>Innendurchmesser<input type="text" name="Innendurchmesser Schornstein"></label>
-              <label>Dachausstieg vorhanden?<select name="Dachausstieg vorhanden"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-              <label>Abfluss vorhanden?<select name="Abfluss vorhanden"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></label>
-            </div>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<select name="Heizung">
+<option>Gas</option>
+<option>Öl</option>
+<option>Wärmepumpe</option>
+</select>
 
-          <section class="step-panel" data-step-title="Fotos &amp; Unterlagen" data-step-id="uploads">
-            <div class="step-header"><div><h3>Fotos &amp; Unterlagen hochladen</h3><p class="step-hint">Bitte laden Sie nach Möglichkeit aussagekräftige Bilder und Unterlagen zum Objekt hoch.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <div class="upload-grid">
-              <div class="upload-card"><div class="upload-title">Haus von außen</div><label class="upload-trigger">Datei einfügen<input type="file" name="Haus von außen" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Heizraum</div><label class="upload-trigger">Datei einfügen<input type="file" name="Heizraum" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Fußbodenheizungsverteiler</div><label class="upload-trigger">Datei einfügen<input type="file" name="Fußbodenheizungsverteiler" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Heizkörperventile</div><label class="upload-trigger">Datei einfügen<input type="file" name="Heizkörperventile" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Abwasseranschluss an der Heizung</div><label class="upload-trigger">Datei einfügen<input type="file" name="Abwasseranschluss" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Elektroverteilung &amp; Zähler</div><label class="upload-trigger">Datei einfügen<input type="file" name="Elektroverteilung und Zähler" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Gaszähler</div><label class="upload-trigger">Datei einfügen<input type="file" name="Gaszähler" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Typenschilder der aktuellen Heizung</div><label class="upload-trigger">Datei einfügen<input type="file" name="Typenschilder aktuelle Heizung" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-              <div class="upload-card"><div class="upload-title">Letzter Schornsteinfegerbericht</div><label class="upload-trigger">Datei einfügen<input type="file" name="Schornsteinfegerbericht" accept="image/*,.pdf"></label><div class="upload-name">Noch keine Datei gewählt</div></div>
-            </div>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="button" class="btn-brand next-btn">Weiter</button></div>
-          </section>
+<select name="Standort">
+<option>Keller</option>
+<option>Erdgeschoss</option>
+<option>Spitzboden</option>
+</select>
 
-          <section class="step-panel" data-step-title="Zusammenfassung" data-step-id="summary">
-            <div class="step-header"><div><h3>Zusammenfassung &amp; Absenden</h3><p class="step-hint">Bitte prüfen Sie Ihre Angaben. Danach können Sie den Fragebogen direkt absenden.</p></div><div class="step-brand"><img src="logo.jpg" alt="Pusch Logo" style="height:50px;"> Pusch Heizung</div></div>
-            <div class="summary-box"><div class="summary-grid" id="summaryGrid"></div></div>
-            <label><input type="checkbox" id="privacy" name="Datenschutz Zustimmung" value="Ja" required=""> Ich stimme der Verarbeitung meiner Daten zum Zweck der Bearbeitung meines Beratungstermins und der anschließenden Angebotserstellung zu.</label>
-            <p class="fineprint">Mit dem Absenden wird Ihr Fragebogen an <strong>b.kehrly@pusch-heizung.de</strong> übermittelt.</p>
-            <div class="nav-buttons"><button type="button" class="secondary prev-btn">Zurück</button><button type="submit" class="btn-brand">Fragebogen absenden</button></div>
-          </section>
-        </form>
+<button type="button" onclick="prev()">Zurück</button>
+<button type="submit">Absenden</button>
+</div>
 
-        <section id="danke" class="thankyou-box hidden">
-          <hgroup>
-            <h2>Vielen Dank für das Ausfüllen</h2>
-            <h3>Ihr Fragebogen wurde erfolgreich übermittelt</h3>
-          </hgroup>
-          <p>Wenn bereits ein Beratungstermin vereinbart wurde, freuen wir uns auf das Gespräch mit Ihnen.</p>
-          <p>Falls noch kein Termin vergeben wurde, melden wir uns in Kürze bei Ihnen, um einen Termin zu vereinbaren.</p>
-        </section>
-      </div>
-    </section>
+</form>
 
-    <footer class="container">
-      <small><a href="mailto:b.kehrly@pusch-heizung.de">b.kehrly@pusch-heizung.de</a> • <a href="https://designergpt.replit.app/pages/82fe3fdd98fb1d4b36508c960910a1da.html#start">Zurück nach oben</a></small>
-    </footer>
-  </main>
+</section>
 
-  <script>
-    const allPanels = [...document.querySelectorAll('.step-panel')];
-    const nextButtons = document.querySelectorAll('.next-btn');
-    const prevButtons = document.querySelectorAll('.prev-btn');
-    const progressFill = document.getElementById('progressFill');
-    const stepLabel = document.getElementById('stepLabel');
-    const stepTitle = document.getElementById('stepTitle');
-    const summaryGrid = document.getElementById('summaryGrid');
-    const form = document.getElementById('heatpumpForm');
-    const danke = document.getElementById('danke');
-    let currentStep = 0;
+</main>
 
-    function selectedFutureHeating() {
-      return [...document.querySelectorAll('input[name="Gewünschte Heizenergie"]:checked')].map(el => el.value);
-    }
-    function activeSteps() {
-      const needsChimney = selectedFutureHeating().some(v => ['Erdgas', 'Heizöl', 'Flüssiggas', 'Holz', 'Pellets'].includes(v));
-      const chimneyStep = document.getElementById('chimneyStep');
-      chimneyStep.classList.toggle('hidden', !needsChimney);
-      return allPanels.filter(panel => !panel.classList.contains('hidden'));
-    }
-    function updateFuelRows() {
-      const selected = document.querySelector('input[name="Aktuelle Heizenergie"]:checked')?.value || '';
-      document.querySelectorAll('.fuel-row').forEach(row => row.classList.toggle('hidden', row.dataset.fuelRow !== selected));
-    }
-    function updateStep() {
-      const steps = activeSteps();
-      if (currentStep > steps.length - 1) currentStep = steps.length - 1;
-      allPanels.forEach(step => step.classList.remove('active'));
-      steps[currentStep].classList.add('active');
-      progressFill.style.width = (((currentStep + 1) / steps.length) * 100) + '%';
-      stepLabel.textContent = `Schritt ${currentStep + 1} von ${steps.length}`;
-      stepTitle.textContent = steps[currentStep].dataset.stepTitle || '';
-      if (steps[currentStep].dataset.stepId === 'summary') buildSummary();
-      window.scrollTo({ top: document.getElementById('fragebogen').offsetTop - 74, behavior: 'smooth' });
-    }
-    function validateCurrentStep() {
-      const steps = activeSteps();
-      const activeStep = steps[currentStep];
-      if (activeStep.dataset.stepId === 'future-heating' && selectedFutureHeating().length === 0) {
-        alert('Bitte wählen Sie mindestens eine gewünschte Heizenergie aus.');
-        return false;
-      }
-      const requiredFields = [...activeStep.querySelectorAll('[required]')];
-      for (const field of requiredFields) {
-        if (field.type === 'radio') {
-          const group = activeStep.querySelectorAll(`[name="${field.name}"]`);
-          if (![...group].some(input => input.checked)) {
-            alert('Bitte treffen Sie eine Auswahl, bevor Sie fortfahren.');
-            return false;
-          }
-        } else if (!field.checkValidity()) {
-          field.reportValidity();
-          return false;
-        }
-      }
-      return true;
-    }
-    function buildSummary() {
-      const data = new FormData(form);
-      const future = data.getAll('Gewünschte Heizenergie').filter(Boolean).join(', ') || '—';
-      const fields = [
-        ['Vor- und Nachname','Vor- und Nachname'],['Objektadresse','Objektadresse'],['Straße und Hausnummer','Straße und Hausnummer'],['PLZ und Ort','PLZ und Ort'],['Telefon','Telefon'],['E-Mail','E-Mail'],['Art des Hauses','Art des Hauses'],['Baujahr des Gebäudes','Baujahr Gebäude'],['Zu beheizende Fläche','Beheizte Fläche'],['Gebäude saniert','Gebäude saniert'],['Maße Heizraum','Maße Heizraum'],['Schmalste Tür Heizraum','Schmalste Tür Heizraum (cm)'],['Aktuelle Heizenergie','Aktuelle Heizenergie'],['Heizart','Heizart'],['Baujahr aktuelle Heizung','Baujahr aktuelle Heizung'],['Anlagenstandort','Anlagenstandort'],['Neuer Anlagenstandort','Neue Heizung am Standort der alten'],['Zählerschrank gleicher Raum','Zählerschrank gleicher Raum'],['PV vorhanden','PV vorhanden'],['Vorlauftemperatur Heizsystem','Vorlauftemperatur (°C)'],['Räume nicht richtig warm','Räume nicht richtig warm'],['Gewünschte Heizenergie','Gewünschte Heizenergie'],['Fördercheck Eigentümer','Eigentümer'],['Fördercheck selbst bewohnt','Selbst bewohnt'],['Aktuelle Heizung ersetzen','Aktuelle Heizung ersetzen'],['Mehr als eine Wohneinheit','Mehr als eine Wohneinheit'],['Gewünschter Montagetermin','Gewünschter Montagetermin'],['Schornsteinhöhe','Schornsteinhöhe'],['Innendurchmesser Schornstein','Innendurchmesser'],['Dachausstieg vorhanden','Dachausstieg vorhanden'],['Abfluss vorhanden','Abfluss vorhanden']
-      ];
-      summaryGrid.innerHTML = '';
-      fields.forEach(([name, label]) => {
-        const val = name === 'Gewünschte Heizenergie' ? future : (data.getAll(name).filter(Boolean).join(', ') || '—');
-        const item = document.createElement('div');
-        item.className = 'summary-item';
-        item.innerHTML = `<strong>${label}</strong><span>${val}</span>`;
-        summaryGrid.appendChild(item);
-      });
-    }
-    nextButtons.forEach(btn => btn.addEventListener('click', () => {
-      if (!validateCurrentStep()) return;
-      const steps = activeSteps();
-      if (currentStep < steps.length - 1) currentStep++;
-      updateStep();
-    }));
-    prevButtons.forEach(btn => btn.addEventListener('click', () => {
-      if (currentStep > 0) currentStep--;
-      updateStep();
-    }));
-    document.querySelectorAll('.option-card input').forEach(input => {
-      input.addEventListener('change', () => {
-        if (input.type === 'radio') {
-          document.querySelectorAll(`input[name="${input.name}"]`).forEach(i => i.closest('.option-card')?.classList.remove('active'));
-          if (input.checked) input.closest('.option-card')?.classList.add('active');
-        } else {
-          input.closest('.option-card')?.classList.toggle('active', input.checked);
-        }
-        if (input.name === 'Aktuelle Heizenergie') updateFuelRows();
-        if (input.name === 'Gewünschte Heizenergie') updateStep();
-      });
-    });
-    document.querySelectorAll('.upload-trigger input[type="file"]').forEach(input => {
-      input.addEventListener('change', () => {
-        const nameTarget = input.closest('.upload-card').querySelector('.upload-name');
-        if (input.files.length > 1) {
-          nameTarget.textContent = `${input.files.length} Dateien eingefügt`;
-        } else if (input.files.length === 1) {
-          nameTarget.textContent = input.files[0].name;
-        } else {
-          nameTarget.textContent = 'Noch keine Datei gewählt';
-        }
-      });
-    });
-    form.addEventListener('submit', function () {
-      const wrapper = document.querySelector('#fragebogen .step-shell');
-      form.classList.add('hidden');
-      document.querySelector('.progress-wrap').classList.add('hidden');
-      danke.classList.remove('hidden');
-      wrapper.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-    updateFuelRows();
-    updateStep();
-  </script>
+<script>
+let step = 0;
+const steps = document.querySelectorAll(".step-panel");
+const progress = document.getElementById("progress");
 
-</body></html>
+function show(){
+  steps.forEach((s,i)=>s.classList.toggle("active", i===step));
+  progress.style.width = ((step+1)/steps.length*100)+"%";
+}
+
+function next(){
+  if(step < steps.length-1){
+    step++;
+    show();
+  }
+}
+
+function prev(){
+  if(step > 0){
+    step--;
+    show();
+  }
+}
+
+show();
+</script>
+
+</body>
+</html>
