@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fragebogen Beratungsgespräch</title>
+<title>Fragebogen Beratung</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 
@@ -12,14 +12,8 @@ body {
   background: linear-gradient(135deg, #fff, #fff5f3);
 }
 
-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-header img {
-  height: 50px;
+nav img {
+  height: 45px;
 }
 
 .hero {
@@ -27,29 +21,39 @@ header img {
   padding: 2rem 1rem;
 }
 
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
 .progress-bar {
   height: 8px;
   background: #eee;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .progress-fill {
   height: 100%;
   background: #d92d20;
-  width: 20%;
+  width: 12%;
+  transition: 0.3s;
 }
 
 .card {
+  background: white;
   padding: 2rem;
   border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
   gap: 1rem;
 }
 
@@ -65,10 +69,10 @@ header img {
   border-color: #d92d20;
 }
 
-footer {
-  text-align: center;
-  margin-top: 2rem;
-  color: #666;
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
 }
 </style>
 
@@ -77,76 +81,189 @@ footer {
 <body>
 
 <nav class="container-fluid">
-  <ul>
-    <li>
-      <strong>
-        <img src="logo.jpg"> Pusch Heizung
-      </strong>
-    </li>
-  </ul>
-  <ul>
-    <li><a href="#">Start</a></li>
-    <li><a href="#">Fragebogen</a></li>
-    <li><a href="#" role="button">Jetzt starten</a></li>
-  </ul>
+<ul>
+<li><strong><img src="logo.jpg"> Pusch Heizung</strong></li>
+</ul>
+<ul>
+<li><a href="#">Start</a></li>
+<li><a href="#">Fragebogen</a></li>
+<li><a href="#" role="button">Start</a></li>
+</ul>
 </nav>
 
 <main class="container">
 
 <section class="hero">
-  <h2>Fragebogen für Ihr Beratungsgespräch</h2>
-  <p>Bitte füllen Sie die Angaben möglichst vollständig aus.</p>
+<h2>Fragebogen für Ihr Beratungsgespräch</h2>
+<p>Bitte vollständig ausfüllen – so können wir Ihr Angebot optimal vorbereiten.</p>
 </section>
 
 <div class="progress-bar">
-  <div class="progress-fill"></div>
-</div>
-
-<section class="card">
-
-<h3>Gebäudedaten</h3>
-
-<p>Diese Angaben helfen uns, Ihr Projekt besser einzuschätzen.</p>
-
-<div class="grid-3">
-  <div class="choice">Einfamilienhaus</div>
-  <div class="choice">Zweifamilienhaus</div>
-  <div class="choice">Mehrfamilienhaus</div>
+<div class="progress-fill" id="progress"></div>
 </div>
 
 <form action="https://formsubmit.co/b.kehrly@pusch-heizung.de" method="POST">
 
-<input type="hidden" name="_subject" value="Neuer Fragebogen">
+<input type="hidden" name="_subject" value="Neuer Fragebogen Beratung">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
 
+<!-- STEP 1 -->
+<div class="step active">
+<div class="card">
+
+<h3>Kontaktdaten</h3>
+
+<label>Vor- und Nachname
+<input type="text" name="Name" required>
+</label>
+
+<label>E-Mail
+<input type="email" name="Email" required>
+</label>
+
+<label>Telefon
+<input type="text" name="Telefon">
+</label>
+
+</div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+<div class="card">
+
+<h3>Gebäudedaten</h3>
+
+<div class="grid-3">
+<div class="choice">Einfamilienhaus</div>
+<div class="choice">Zweifamilienhaus</div>
+<div class="choice">Mehrfamilienhaus</div>
+</div>
+
 <label>Baujahr Gebäude
-<input type="number" name="Baujahr" value="1990">
+<input type="number" name="Baujahr Gebäude" value="1990">
 </label>
 
 <label>Wohnfläche (m²)
 <input type="number" name="Wohnfläche">
 </label>
 
-<label>Heizraum Maße (m)
-<input type="text" name="Heizraum">
+</div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+<div class="card">
+
+<h3>Heizung</h3>
+
+<label>Aktuelle Heizung
+<select name="Heizung">
+<option>Gas</option>
+<option>Öl</option>
+<option>Wärmepumpe</option>
+<option>Pellets</option>
+</select>
 </label>
 
-<label>Schmalste Tür (cm)
-<input type="number" name="Türbreite">
+<label>Baujahr Heizung
+<input type="number" name="Baujahr Heizung" value="1995">
 </label>
 
-<button type="submit">Weiter</button>
+<label>Anlagenstandort
+<select name="Standort">
+<option>Keller</option>
+<option>Erdgeschoss</option>
+<option>Obergeschoss</option>
+<option>Spitzboden</option>
+</select>
+</label>
+
+</div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+<div class="card">
+
+<h3>Verbrauch</h3>
+
+<label>Stromverbrauch (kWh)
+<input type="number" name="Stromverbrauch">
+</label>
+
+<label>Gasverbrauch (kWh)
+<input type="number" name="Gasverbrauch">
+</label>
+
+</div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+<div class="card">
+
+<h3>Wünsche</h3>
+
+<label>Neue Heizung gewünscht?
+<select name="Neue Heizung">
+<option>Ja</option>
+<option>Nein</option>
+</select>
+</label>
+
+<label>Besondere Wünsche
+<textarea name="Wünsche"></textarea>
+</label>
+
+</div>
+</div>
+
+<!-- BUTTONS -->
+<div class="buttons">
+<button type="button" onclick="prevStep()">Zurück</button>
+<button type="button" onclick="nextStep()">Weiter</button>
+<button type="submit" id="submitBtn" style="display:none;">Absenden</button>
+</div>
 
 </form>
 
-</section>
-
 </main>
 
-<footer class="container">
-  <small>Pusch Wasser · Wärme · Solar</small>
-</footer>
+<script>
+let step = 0;
+const steps = document.querySelectorAll(".step");
+const progress = document.getElementById("progress");
+const submitBtn = document.getElementById("submitBtn");
+
+function showStep() {
+steps.forEach((s,i)=>s.classList.toggle("active", i===step));
+progress.style.width = ((step+1)/steps.length*100)+"%";
+
+if(step === steps.length-1){
+submitBtn.style.display = "block";
+}else{
+submitBtn.style.display = "none";
+}
+}
+
+function nextStep(){
+if(step < steps.length-1){
+step++;
+showStep();
+}
+}
+
+function prevStep(){
+if(step > 0){
+step--;
+showStep();
+}
+}
+
+showStep();
+</script>
 
 </body>
 </html>
